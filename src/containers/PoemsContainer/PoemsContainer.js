@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ListContainer from './ListQueryContainer';
-import { getPoems } from '../utils/getPoems';
+import ListContainer from '../ListContainers/ListQueryContainer';
+import { getPoems } from '../../utils/getPoems';
 
 const PoemsContainer = () => {
   const [query, setQuery] = useState('');

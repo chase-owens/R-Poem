@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Search from '../views/Search';
+import Search from '../../views/Search';
 
 const ListQueryContainer = props => {
   const [query, setQuery] = useState('');
