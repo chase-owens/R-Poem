@@ -1,39 +1,38 @@
-import { observable } from 'mobx';
-
+import { observable, computed, decorate } from 'mobx';
 class PoemStore {
-  @observable poemAuthor = '';
-  @observable poemTitle = '';
-  @observable poemContent = '';
+  author = '';
+  title = '';
+  lines = '';
 
-  getPoemTitle() {
-    return this.poemTitle;
+  getTitle() {
+    return this.title;
   }
 
-  getPoemAuthor() {
-    return this.poemAuthor;
+  getAuthor() {
+    return this.author;
   }
 
-  getPoemContent() {
-    return this.poemContent;
+  getLines() {
+    return this.lines;
   }
 
   getPoem() {
     return {
-      author: this.poemAuthor,
-      title: this.poemTitle,
-      poemContent: this.poemContent
+      author: this.author,
+      title: this.title,
+      content: this.lines
     };
   }
 
-  setPoemTitle(poemTitle) {
-    this.poemTitle = poemTitle;
+  setTitle(title) {
+    this.title = title;
   }
 
-  setPoemAuthor(poemAuthor) {
-    this.poemAuthor = poemAuthor;
+  setAuthor(author) {
+    this.author = author;
   }
 
-  setPoemContent() {
+  setLines() {
     // make API call to poem
   }
 
@@ -41,5 +40,15 @@ class PoemStore {
     // destructure set parameters
   }
 }
+
+decorate(PoemStore, {
+  author: observable,
+  title: observable,
+  lines: observable,
+  getTitle: computed,
+  getAuthor: computed,
+  getLines: computed,
+  getPoem: computed
+});
 
 export const poemStore = new PoemStore();
