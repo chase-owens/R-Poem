@@ -4,7 +4,12 @@ import { Button, Icon } from 'semantic-ui-react';
 const NavItem = ({ navItem }) => {
   return (
     <Button
-      style={{ display: 'flex', flexDirection: 'column', background: '#f00' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        background: 'transparent',
+        color: '#cc0066'
+      }}
     >
       <p>{navItem.title}</p>
       <div style={{ margin: 'auto' }}>

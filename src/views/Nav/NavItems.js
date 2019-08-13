@@ -4,7 +4,13 @@ import NavItem from './NavItem';
 
 const NavItems = () => {
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        background: 'rgba(999, 999, 999, 0.8)'
+      }}
+    >
       {navObjects().map(item => (
         <NavItem key={item.title} navItem={item} />
       ))}
