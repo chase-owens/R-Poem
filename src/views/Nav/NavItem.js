@@ -8,7 +8,8 @@ const NavItem = ({ navItem }) => {
         display: 'flex',
         flexDirection: 'column',
         background: 'transparent',
-        color: '#cc0066'
+        color: '#cc0066',
+        margin: 8
       }}
     >
       <p>{navItem.title}</p>
