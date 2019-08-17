@@ -7,8 +7,7 @@ const NavItems = () => {
     <div
       style={{
         display: 'flex',
-        justifyContent: 'center',
-        background: 'rgba(999, 999, 999, 0.8)'
+        justifyContent: 'center'
       }}
     >
       {navObjects().map(item => (

@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import NavItems from './NavItems';
 
 const Nav = () => {
   return (
-    <nav
-      style={{
-        heght: 50
-      }}
-    >
+    <Fragment>
       <NavItems />
-    </nav>
+    </Fragment>
   );
 };
 
