@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LettersProvider from '../Letters/LettersProvider';
 import { getPoets } from '../../api/api';
+import { getPoemTitles } from '../../api/api';
 
 // make API call to get the list
 
@@ -17,10 +18,6 @@ const LettersListProvider = ({ children, list }) => {
       .then(res => setListWithData(res))
       .catch(err => console.log(err));
   }, [list]);
-  // let populatedList = getList(list)
-  //   .then(res => console.log(res))
-  //   .catch(err => console.log(err));
-  // console.log(populatedList);
   return (
     <ListContext.Provider value={{ list: listWithData }}>
       <LettersProvider>{children}</LettersProvider>
@@ -33,6 +30,9 @@ const getList = async listType => {
   switch (listType) {
     case 'authors':
       list = await getPoets();
+      break;
+    case 'poemTitles':
+      list = await getPoemTitles();
       break;
     default:
       break;
