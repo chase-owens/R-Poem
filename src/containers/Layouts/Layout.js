@@ -5,7 +5,6 @@ import LettersProvider from '../Letters/LettersProvider';
 import LettersView from '../../views/Letters/LettersView';
 import LettersListProvider from '../LettersList/LettersListProvider';
 import LettersListView from '../../views/LettersList/LettersListView';
-import { getPoets } from '../../api/api';
 
 const frost = 'rgba(999, 999, 999, 0.8)';
 
@@ -35,11 +34,11 @@ const Layout = () => {
           <LettersView />
         </LettersProvider>
       </div>
-      {/* <div>
-        <LettersListProvider getList={getPoets}>
+      <div>
+        <LettersListProvider list={'authors'}>
           <LettersListView />
         </LettersListProvider>
-      </div> */}
+      </div>
     </div>
   );
 };

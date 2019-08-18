@@ -11,7 +11,11 @@ export const getPoets = async () => {
 };
 
 export const getPoemTitles = async () => {
-  let titles = await fetch(`${baseURL}titles`);
-  console.log(titles);
-  return titles;
+  let response = await fetch(`${baseURL}titles`);
+  if (response.ok) {
+    let data = await response.json();
+    return data.poems;
+  } else {
+    console.log('ERROR STATUS: ', response.status);
+  }
 };
