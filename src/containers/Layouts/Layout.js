@@ -1,10 +1,7 @@
 import React from 'react';
 import Nav from '../../views/Nav/Nav';
 import cuadros from '../../images/cuadros.png';
-import LettersProvider from '../Letters/LettersProvider';
-import LettersView from '../../views/Letters/LettersView';
-import LettersListProvider from '../LettersList/LettersListProvider';
-import LettersListView from '../../views/LettersList/LettersListView';
+import Literature from '../Literature/Literature';
 
 const frost = 'rgba(999, 999, 999, 0.8)';
 
@@ -19,7 +16,11 @@ const Layout = () => {
       >
         <Nav />
       </nav>
-      <div
+      <div style={{ height: 'calc(100vh - 80px)' }}>
+        <Literature />
+      </div>
+
+      {/* <div
         style={{
           marginTop: 0,
           display: 'inline-block',
@@ -35,10 +36,8 @@ const Layout = () => {
         </LettersProvider>
       </div>
       <div>
-        <LettersListProvider list={'authors'}>
-          <LettersListView />
-        </LettersListProvider>
-      </div>
+        <PoetsListView />
+      </div> */}
     </div>
   );
 };

@@ -3,22 +3,47 @@ import { LettersContext } from '../../containers/Letters/LettersProvider';
 import { ListContext } from '../../containers/LettersList/LettersListProvider';
 import LettersListItem from './LettersListItem';
 import { startsWith } from '../../utils/startWith';
+import { Header } from 'semantic-ui-react';
+import Letterlabel from '../LetterLabel/LetterLabel';
+import injectSheet from 'react-jss';
+import PropTypes from 'prop-types';
 
-const LettersListView = () => {
+const styles = {
+  listItem: {
+    fontSize: 13,
+    cursor: 'pointer',
+    '&:hover': {
+      fontWeight: 'bold'
+    }
+  }
+};
+
+const LettersListView = ({ classes, title }) => {
   const lettersContext = useContext(LettersContext);
-  console.log(lettersContext);
   const listContext = useContext(ListContext);
-  console.log(listContext);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', padding: '5px' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          justifyContent: 'space-between'
+        }}
+      >
+        <Header as='h2'>{title}</Header>
+        <p>{listContext.list.length}</p>
+      </div>
+
       {lettersContext.letters.alphabetArray.map(letter => (
         <Fragment>
-          <LettersListItem content={letter} />
+          <Letterlabel letter={letter} />
           {listContext.list
             .filter(listItem => startsWith(listItem, letter))
             .map(listItem => (
-              <LettersListItem content={listItem} />
+              <div className={classes.listItem}>
+                <LettersListItem content={listItem} />
+              </div>
             ))}
         </Fragment>
       ))}
@@ -26,8 +51,8 @@ const LettersListView = () => {
   );
 };
 
-// LettersListView.propTypes = {
-//   letters: PropTypes.array.isRequired
-// };
+LettersListItem.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
-export default LettersListView;
+export default injectSheet(styles)(LettersListView);

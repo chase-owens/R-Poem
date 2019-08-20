@@ -32,7 +32,9 @@ const getList = async listType => {
       list = await getPoets();
       break;
     case 'poemTitles':
+      console.log('titles: ', list);
       list = await getPoemTitles();
+      console.log('titles: ', list);
       break;
     default:
       break;

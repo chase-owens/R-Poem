@@ -14,7 +14,7 @@ export const getPoemTitles = async () => {
   let response = await fetch(`${baseURL}titles`);
   if (response.ok) {
     let data = await response.json();
-    return data.poems;
+    return data.titles;
   } else {
     console.log('ERROR STATUS: ', response.status);
   }

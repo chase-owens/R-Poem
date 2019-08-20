@@ -3,7 +3,18 @@ import React, { useContext } from 'react';
 import injectSheet from 'react-jss';
 import { LettersContext } from '../../containers/Letters/LettersProvider';
 
+const frost = 'rgba(999, 999, 999, 0.8)';
+
 const styles = {
+  lettersViewContainer: {
+    marginTop: 0,
+    display: 'inline-block',
+    textAlign: 'center',
+    padding: '0 2px',
+    height: 'calc(100vh - 80px)',
+    color: '#cc0066',
+    background: frost
+  },
   lettersWrapStyle: {
     display: 'flex',
     flexDirection: 'column',

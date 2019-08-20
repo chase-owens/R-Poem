@@ -1,11 +1,11 @@
 import { observable, computed, decorate } from 'mobx';
 class PoemStore {
   author = '';
-  title = '';
-  lines = '';
+  poem = { author: '', title: '', lines: '' };
+  poems = [];
 
   getTitle() {
-    return this.title;
+    return this.poem.title;
   }
 
   getAuthor() {
@@ -13,23 +13,27 @@ class PoemStore {
   }
 
   getLines() {
-    return this.lines;
+    return this.poem.lines;
   }
 
   getPoem() {
-    return {
-      author: this.author,
-      title: this.title,
-      content: this.lines
-    };
+    return this.poem;
+  }
+
+  getPoems() {
+    return this.poems;
   }
 
   setTitle(title) {
-    this.title = title;
+    this.poem.title = title;
+
+    // Set author and poem with API call
   }
 
   setAuthor(author) {
     this.author = author;
+
+    // Set poems with API call
   }
 
   setLines() {
@@ -43,12 +47,13 @@ class PoemStore {
 
 decorate(PoemStore, {
   author: observable,
-  title: observable,
-  lines: observable,
+  poem: observable,
+  poems: observable,
   getTitle: computed,
   getAuthor: computed,
   getLines: computed,
-  getPoem: computed
+  getPoem: computed,
+  getPoems: computed
 });
 
 export const poemStore = new PoemStore();
