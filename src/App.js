@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Layout from './containers/Layouts/Layout';
 import 'semantic-ui/dist/semantic.min.css';
+import LiteraturePage from './routes/LiteraturePage';
 
 function App() {
-  return <Layout />;
+  return <LiteraturePage />;
 }
 
 export default App;

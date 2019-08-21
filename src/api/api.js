@@ -19,3 +19,14 @@ export const getPoemTitles = async () => {
     console.log('ERROR STATUS: ', response.status);
   }
 };
+
+export const getPoem = async poem => {
+  let response = await fetch(`${baseURL}/title/${poem}`);
+  if (response.ok) {
+    let data = await response.json();
+    console.log(data);
+    return data;
+  } else {
+    console.log('ERROR STATUS: ', response.status);
+  }
+};

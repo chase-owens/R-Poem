@@ -1,6 +1,6 @@
 import React from 'react';
-// import { PropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 
 const LettersListItem = ({ content }) => {
   return (
@@ -14,4 +14,4 @@ LettersListItem.propTypes = {
   content: PropTypes.string.isRequired
 };
 
-export default LettersListItem;
+export default observer(LettersListItem);

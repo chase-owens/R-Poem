@@ -3,8 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { poemStore } from './store/PoemStore';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const GlobalState = React.createContext(poemStore);
+
+ReactDOM.render(
+  <GlobalState.Provider value={poemStore}>
+    <App />
+  </GlobalState.Provider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
