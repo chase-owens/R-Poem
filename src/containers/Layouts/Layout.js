@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from '../../views/Nav/Nav';
 import cuadros from '../../images/cuadros.png';
 
-const frost = 'rgba(999, 999, 999, 0.8)';
+// const frost = 'rgba(999, 999, 999, 0.8)';
 
 const Layout = ({ children }) => {
   return (
@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       <nav
         style={{
           height: 80,
-          background: frost
+          background: 'rgba(204, 0, 102, 0.8)'
         }}
       >
         <Nav />

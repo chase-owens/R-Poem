@@ -11,7 +11,7 @@ const NavItems = () => {
       }}
     >
       {navObjects().map(item => (
-        <NavItem key={item.title} navItem={item} />
+        <NavItem style={{ marginTop: 3 }} key={item.title} navItem={item} />
       ))}
     </div>
   );

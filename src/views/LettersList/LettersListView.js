@@ -6,41 +6,25 @@ import LettersListItem from './LettersListItem';
 import { startsWith } from '../../utils/startWith';
 import { Header } from 'semantic-ui-react';
 import Letterlabel from '../LetterLabel/LetterLabel';
-import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
 import { observer } from 'mobx-react';
 // import { get, set } from 'mobx';
 
-const styles = {
-  listItem: {
-    fontSize: 13,
-    cursor: 'pointer',
-    '&:hover': {
-      fontWeight: 'bold'
-    }
-  },
-  selectedListItem: {
-    fontSize: 13,
-    background: 'rgba(204, 0, 102, 0.8)',
-    color: '#fff',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    '&:hover': {
-      color: '#ffd100'
-    }
-  }
-};
-
-const LettersListView = ({ classes, title }) => {
+const LettersListView = ({ title }) => {
   const lettersContext = useContext(LettersContext);
   const listContext = useContext(ListContext);
   const globalState = useContext(GlobalState);
   console.log(globalState.author, globalState.poem);
 
-  const handleChange = value => {
-    title === 'Poets'
-      ? globalState.setAuthor(value)
-      : globalState.setPoem(value);
+  const handleChange = (value, selected) => {
+    if (selected) {
+      title === 'Poets' && globalState.setAuthor(null);
+      title === 'Poems' && globalState.setPoem(null);
+    } else {
+      title === 'Poets'
+        ? globalState.setAuthor(value)
+        : globalState.setPoem(value);
+    }
   };
 
   return (
@@ -61,28 +45,22 @@ const LettersListView = ({ classes, title }) => {
           <Letterlabel letter={letter} />
           {listContext.list
             .filter(listItem => startsWith(listItem, letter))
-            .map(listItem =>
-              listItem === globalState.author ||
-              (globalState.poem !== null &&
-                globalState.poem.title === listItem) ? (
+            .map(listItem => {
+              let selected =
+                (globalState.author !== null &&
+                  listItem === globalState.author) ||
+                (globalState.poem !== null &&
+                  globalState.poem.title === listItem);
+              return (
                 <div
                   key={listItem}
                   value={listItem}
-                  className={classes.selectedListItem}
+                  onClick={() => handleChange(listItem, selected)}
                 >
-                  <LettersListItem content={listItem} />
+                  <LettersListItem content={listItem} selected={selected} />
                 </div>
-              ) : (
-                <div
-                  key={listItem}
-                  value={listItem}
-                  className={classes.listItem}
-                  onClick={() => handleChange(listItem)}
-                >
-                  <LettersListItem content={listItem} />
-                </div>
-              )
-            )}
+              );
+            })}
         </Fragment>
       ))}
     </div>
@@ -93,4 +71,4 @@ LettersListItem.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default injectSheet(styles)(observer(LettersListView));
+export default observer(LettersListView);

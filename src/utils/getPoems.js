@@ -1,3 +1,3 @@
-export const getPoems = query => {
+export const getPoems = (query = '', author) => {
   return null;
 };

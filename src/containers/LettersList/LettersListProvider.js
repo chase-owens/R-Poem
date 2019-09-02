@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import LettersProvider from '../Letters/LettersProvider';
 import { getPoets } from '../../api/api';
 import { getPoemTitles } from '../../api/api';
+import { GlobalState } from '../../index';
+import { observer } from 'mobx-react';
 
 // make API call to get the list
 
@@ -12,12 +14,14 @@ export const ListContext = React.createContext([]);
 
 const LettersListProvider = ({ children, list }) => {
   let [listWithData, setListWithData] = useState([]);
+  const globalState = useContext(GlobalState);
+  let author = globalState.author;
 
   useEffect(() => {
-    getList(list)
+    getList(list, author)
       .then(res => setListWithData(res))
       .catch(err => console.log(err));
-  }, [list]);
+  }, [list, author]);
   return (
     <ListContext.Provider value={{ list: listWithData }}>
       <LettersProvider>{children}</LettersProvider>
@@ -25,7 +29,8 @@ const LettersListProvider = ({ children, list }) => {
   );
 };
 
-const getList = async listType => {
+const getList = async (listType, author) => {
+  console.log('Author: ', author);
   let list = [];
   switch (listType) {
     case 'authors':
@@ -33,14 +38,16 @@ const getList = async listType => {
       break;
     case 'poemTitles':
       console.log('titles: ', list);
-      list = await getPoemTitles();
+      list = await getPoemTitles(author);
       console.log('titles: ', list);
       break;
     default:
       break;
   }
-  console.log('GOT LIST: ', list);
   return list;
 };
 
-export default LettersListProvider;
+export default observer(LettersListProvider);
+
+// Bring in global state
+// Filter poems by author if author !== null

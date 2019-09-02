@@ -4,7 +4,7 @@ import { getPoem } from '../api/api';
 export const poemStore = observable(
   {
     // observable properties:
-    author: 'Edgar Allan Poe',
+    author: null,
     poem: null,
 
     // computed/derived  property
@@ -14,10 +14,14 @@ export const poemStore = observable(
 
     // actions
     async setPoem(title) {
-      const poem = await getPoem(title);
-      console.log('Setting poem', poem[0]);
-      this.poem = poem[0];
-      this.setAuthor(this.poem.author);
+      if (title === null) {
+        this.poem = null;
+      } else {
+        const poem = await getPoem(title);
+        console.log('Setting poem', poem[0]);
+        this.poem = poem[0];
+        this.setAuthor(this.poem.author);
+      }
     },
 
     setAuthor(author) {

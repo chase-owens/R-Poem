@@ -1,4 +1,6 @@
-export const baseURL = `http://poetrydb.org/`;
+import { extractTitles } from '../utils/extractTitles';
+
+const baseURL = `http://poetrydb.org/`;
 
 export const getPoets = async () => {
   let response = await fetch(`${baseURL}authors`);
@@ -10,11 +12,15 @@ export const getPoets = async () => {
   }
 };
 
-export const getPoemTitles = async () => {
-  let response = await fetch(`${baseURL}titles`);
+export const getPoemTitles = async (author = null) => {
+  let authorSelected = author !== null;
+  let response = authorSelected
+    ? await fetch(`${baseURL}author/${author}/title`)
+    : await fetch(`${baseURL}titles`);
   if (response.ok) {
     let data = await response.json();
-    return data.titles;
+    let titles = authorSelected ? extractTitles(data) : data.titles;
+    return titles;
   } else {
     console.log('ERROR STATUS: ', response.status);
   }
