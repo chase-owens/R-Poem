@@ -3,22 +3,17 @@ import { GlobalState } from '../../index';
 import { Header } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import injectSheet from 'react-jss';
-import { Button, Grid } from 'semantic-ui-react';
-
-const frost = 'rgba(999, 999, 999, 0.8)';
-// const blueFrost = 'rgba(22, 25, 34, 0.8)';
+import { Button } from 'semantic-ui-react';
 
 const styles = {
   container: {
     marginTop: 0,
-    // width: 'calc(100% - 10px)',
     background: 'transparent'
   },
   header: {
     background: '#ffd100',
     paddingTop: 5,
     paddingBottom: 10,
-    // marginBottom: 20,
     boxShadow: `0px 2px 5px rgb(22, 25, 34)`
   },
   poemLines: {

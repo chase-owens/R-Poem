@@ -10,13 +10,13 @@ function translateRoute(route) {
 
   switch (route) {
     case 'Literature':
-      routeObject = new NavClass('Literature', 'book', '/Lit');
+      routeObject = new NavClass('Literature', 'book', '/Literature');
       break;
     case 'Reconstruction':
       routeObject = new NavClass('Reconstruction', 'write', '/Reconstruct');
       break;
     case 'Dashboard':
-      routeObject = new NavClass('Dashboard', 'dashboard', '/Dash');
+      routeObject = new NavClass('Dashboard', 'dashboard', '/');
       break;
     case 'Login':
       routeObject = new NavClass('Login', 'ticket', '/Login');

@@ -1,16 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Router } from 'react-router-dom';
+import { history } from './store/history';
 import * as serviceWorker from './serviceWorker';
 import { poemStore } from './store/PoemStore';
+import { authState } from './store/AuthState';
+import App from './App';
+import './index.css';
 
 export const GlobalState = React.createContext(poemStore);
+export const AuthState = React.createContext(authState);
 
 ReactDOM.render(
-  <GlobalState.Provider value={poemStore}>
-    <App />
-  </GlobalState.Provider>,
+  <Router history={history}>
+    <GlobalState.Provider value={poemStore}>
+      <AuthState.Provider value={authState}>
+        <App />
+      </AuthState.Provider>
+    </GlobalState.Provider>
+  </Router>,
   document.getElementById('root')
 );
 
