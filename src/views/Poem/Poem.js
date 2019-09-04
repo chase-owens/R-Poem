@@ -3,6 +3,7 @@ import { GlobalState } from '../../index';
 import { Header } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import injectSheet from 'react-jss';
+import { Button, Grid } from 'semantic-ui-react';
 
 const frost = 'rgba(999, 999, 999, 0.8)';
 // const blueFrost = 'rgba(22, 25, 34, 0.8)';
@@ -10,23 +11,18 @@ const frost = 'rgba(999, 999, 999, 0.8)';
 const styles = {
   container: {
     marginTop: 0,
-    width: 'calc(100% - 10px)',
-    background: frost,
-    marginLeft: 10
-    // borderTop: `20px solid ${blueFrost}`,
-    // borderBottom: `20px solid ${blueFrost}`,
-    // borderRight: `10px solid ${blueFrost}`,
-    // borderLeft: `10px solid ${blueFrost}`
+    // width: 'calc(100% - 10px)',
+    background: 'transparent'
   },
   header: {
     background: '#ffd100',
     paddingTop: 5,
     paddingBottom: 10,
-    marginBottom: 20,
+    // marginBottom: 20,
     boxShadow: `0px 2px 5px rgb(22, 25, 34)`
   },
   poemLines: {
-    paddingTop: 30,
+    padding: '30px 0',
     textAlign: 'center'
   }
 };
@@ -49,8 +45,21 @@ const Poem = ({ classes }) => {
         >
           By {globalState.poem.author}
         </Header>
+        <div style={{ textAlign: 'center' }}>
+          <Button
+            style={{
+              display: 'inline-block',
+              marginTop: 5,
+              background: 'rgb(18, 20, 84)',
+              color: '#fff'
+            }}
+            size='tiny'
+            // secondary
+          >
+            Reconstruct
+          </Button>
+        </div>
       </div>
-
       <div className={classes.poemLines}>
         {globalState.poem.lines.map(line => (
           <p key={line}>{line}</p>

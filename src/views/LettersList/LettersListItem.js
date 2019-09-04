@@ -16,9 +16,15 @@ const styles = {
     fontSize: 13,
     background: 'rgba(204, 0, 102, 0.8)',
     color: '#fff',
+    '& i': {
+      color: '#fff'
+    },
     fontWeight: 'bold',
     cursor: 'pointer',
     '&:hover': {
+      color: '#ffd100'
+    },
+    '&:hover i': {
       color: '#ffd100'
     }
   }
@@ -30,7 +36,6 @@ const LettersListItem = ({ content, selected, classes }) => {
       <label style={{ cursor: 'pointer' }}>{content}</label>
       {selected && (
         <Button
-          size='small'
           style={{
             float: 'right',
             margin: 0,
@@ -39,7 +44,10 @@ const LettersListItem = ({ content, selected, classes }) => {
             background: 'transparent'
           }}
         >
-          <Icon style={{ color: '#fff' }} name='close' />
+          <Icon
+            style={{ padding: '2.9px 0px 0px 0px', margin: 0 }}
+            name='close'
+          />
         </Button>
       )}
     </div>
@@ -47,7 +55,8 @@ const LettersListItem = ({ content, selected, classes }) => {
 };
 
 LettersListItem.propTypes = {
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired
 };
 
 export default injectSheet(styles)(observer(LettersListItem));

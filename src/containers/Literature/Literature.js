@@ -8,6 +8,7 @@ import { GlobalState } from '../../index';
 import { observer } from 'mobx-react';
 
 // const blueFrost = 'rgba(22, 25, 34, 0.8)';
+const frost = 'rgba(999, 999, 999, 0.8)';
 
 const Literature = () => {
   const globalState = useContext(GlobalState);
@@ -33,7 +34,16 @@ const Literature = () => {
 
       {poemSelected && (
         <VerticalScrollContainer>
-          <Poem />
+          <div
+            style={{
+              minHeight: '100%',
+              marginLeft: 10,
+              paddingRight: -10,
+              background: frost
+            }}
+          >
+            <Poem />
+          </div>
         </VerticalScrollContainer>
       )}
 
